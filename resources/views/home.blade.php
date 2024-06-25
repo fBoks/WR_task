@@ -64,21 +64,17 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col" class="th-hover-overlay">
-                                <span id="userSortButton" data-sort="{{ $sortOrder }}">
-                                    {{ __('Пользователь') }}
-                                    @if($sortBy === 'userSort')
-                                        {{ $sortOrder === 'asc' ? '↓' : '↑' }}
-                                    @endif
-                                </span>
+                            <th scope="col" class="th-hover-overlay" id="userSortButton" data-sort="{{ $sortOrder }}">
+                                {{ __('Пользователь') }}
+                                @if($sortBy === 'userSort')
+                                    {{ $sortOrder === 'asc' ? '↓' : '↑' }}
+                                @endif
                             </th>
-                            <th scope="col" class="th-hover-overlay">
-                                <span id="emailSortButton" data-sort="{{ $sortOrder }}">
-                                    {{ __('Email') }}
-                                    @if($sortBy === 'emailSort')
-                                        {{ $sortOrder === 'asc' ? '↓' : '↑' }}
-                                    @endif
-                                </span>
+                            <th scope="col" class="th-hover-overlay" id="emailSortButton" data-sort="{{ $sortOrder }}">
+                                {{ __('Email') }}
+                                @if($sortBy === 'emailSort')
+                                    {{ $sortOrder === 'asc' ? '↓' : '↑' }}
+                                @endif
                             </th>
                             <th scope="col">{{  __('Сообщение')}}</th>
                             <th scope="col" class="th-hover-overlay" id="dateSortButton" data-sort="{{ $sortOrder }}">
