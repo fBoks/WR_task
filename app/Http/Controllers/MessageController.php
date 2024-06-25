@@ -27,10 +27,10 @@ class MessageController extends Controller
     public function delete (Request $message)
     {
         Message::query()
-            ->where('id', $message)
+            ->where('id', $message->id)
             ->delete();
 
         alert(__('Сообщение удалено'));
-        return redirect()->route('home');
+        return back();
     }
 }

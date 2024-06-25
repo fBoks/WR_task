@@ -81,14 +81,15 @@
                                 </span>
                             </th>
                             <th scope="col">{{  __('Сообщение')}}</th>
-                            <th scope="col" class="th-hover-overlay">
-                                <span id="dateSortButton" data-sort="{{ $sortOrder }}">
-                                    {{ __('Дата') }}
-                                    @if($sortBy === 'dateSort')
-                                        {{ $sortOrder === 'asc' ? '↓' : '↑' }}
-                                    @endif
-                                </span>
+                            <th scope="col" class="th-hover-overlay" id="dateSortButton" data-sort="{{ $sortOrder }}">
+                                {{ __('Дата') }}
+                                @if($sortBy === 'dateSort')
+                                    {{ $sortOrder === 'asc' ? '↓' : '↑' }}
+                                @endif
                             </th>
+                            @auth
+                                <th scope="col">Действие</th>
+                            @endauth
                         </tr>
                         </thead>
                         <tbody>
@@ -101,6 +102,23 @@
                                 <td><span data-bs-toggle="tooltip"
                                           title="{{ $message->created_at }}">{{ $message->created_at->diffForHumans() }}
                                     </span>
+                                </td>
+                                <td>
+                                    @if(Auth::user() && Auth::user()->id === $message->user_id)
+                                        <span class="text-danger" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#confirmationModal_deleteMessage{{ $message->id }}">
+                                            {{ __('Удалить') }}
+                                        </span>
+
+                                        <x-modal method="DELETE"
+                                                 action="{{ route('message.delete', ['id' => $message->id]) }}"
+                                                 id="confirmationModal_deleteMessage{{ $message->id }}"
+                                                 button-text="Удалить">
+
+                                            <div>
+                                                {{ __("Вы действительно хотите удалить это сообщение?") }}
+                                            </div>
+                                        </x-modal>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
