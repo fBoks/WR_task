@@ -42,6 +42,8 @@ class HomeController extends Controller
                 'messages.user_id as user_id',
                 'users.username as username',
                 'users.email as email',
+                'users.ip_address as user_ip',
+                'users.user_agent as user_agent',
             ]);
 
         return view('home', compact(['messages', 'sortBy', 'sortOrder']));

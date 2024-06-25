@@ -27,7 +27,7 @@
                     <x-form-item>
                         <div class="captcha">
                             <span>{!! captcha_img() !!}</span>
-                            <button type="button" class="btn btn-danger" class="reload" id="reload">
+                            <button type="button" class="btn btn-danger reload" id="reload">
                                 &#x21bb;
                             </button>
                         </div>
@@ -92,12 +92,39 @@
                         @foreach($messages as $message)
                             <tr>
                                 <th scope="row">{{ ($messages->currentPage() - 1) * $messages->perPage() + $loop->iteration }}</th>
-                                <td>{{ $message->username }}</td>
+                                <td>
+                                    <span data-bs-toggle="modal" data-bs-target="#userInfoModal" @auth style="cursor: pointer" @endauth>{{ $message->username }}</span>
+
+                                    @auth
+                                        <x-modal-info id="userInfoModal">
+                                            <table class="table table-hover">
+                                                <tr>
+                                                    <td>{{ __('Пользователь') }}</td>
+                                                    <td>{{ $message->username }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ __('IP') }}</td>
+                                                    <td>{{ $message->user_ip }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ __('Браузер') }}</td>
+                                                    <td>{{ $message->user_agent }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ __('Email') }}</td>
+                                                    <td>{{ $message->email }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ __('Дата регистрации') }}</td>
+                                                    <td>{{ $message->created_at }}</td>
+                                                </tr>
+                                            </table>
+                                        </x-modal-info>
+                                    @endauth
+                                </td>
                                 <td>{{ $message->email }}</td>
                                 <td>{{ $message->text }}</td>
-                                <td><span data-bs-toggle="tooltip"
-                                          title="{{ $message->created_at }}">{{ $message->created_at->diffForHumans() }}
-                                    </span>
+                                <td><span data-bs-toggle="tooltip" title="{{ $message->created_at }}">{{ $message->created_at->diffForHumans() }}</span>
                                 </td>
                                 <td>
                                     @if(Auth::user() && Auth::user()->id === $message->user_id)
@@ -108,10 +135,10 @@
                                         <x-modal method="DELETE"
                                                  action="{{ route('message.delete', ['id' => $message->id]) }}"
                                                  id="confirmationModal_deleteMessage{{ $message->id }}"
-                                                 button-text="Удалить">
+                                                 button-text="{{ __('Удалить') }}">
 
                                             <div>
-                                                {{ __("Вы действительно хотите удалить это сообщение?") }}
+                                                {{ __('Вы действительно хотите удалить это сообщение?') }}
                                             </div>
                                         </x-modal>
                                     @endif
