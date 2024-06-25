@@ -53,8 +53,8 @@
     </div>
 
     <x-form-item>
-        <x-label required>{{ __('Содержание статьи') }}</x-label>
-        <x-trix name="content" value="{{ $post->content ?? '' }}" />
+        <x-label required>{{ __('Сообщение') }}</x-label>
+        <x-trix name="content" value="{{ $message->text ?? '' }}" />
 
         <x-error name='content' />
     </x-form-item>

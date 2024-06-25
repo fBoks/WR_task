@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\CaptchaServiceController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\Register;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\RegisterController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -26,3 +26,8 @@ Route::post('register', [RegisterController::class, 'store'])->name('register.st
 Route::get('login', [LoginController::class,'index'])->name('login');
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::post('message/create', [MessageController::class, 'create'])->name('message.create');
+Route::delete('message/delete', [MessageController::class, 'delete'])->name('message.delete');
+
+Route::get('/reload-captcha', [CaptchaServiceController::class, 'reloadCaptcha']);

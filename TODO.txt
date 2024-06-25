@@ -1,12 +1,5 @@
-Создание текстового поля ввода Trix:
-https://www.youtube.com/watch?v=StptJsfmv44&list=PLXCVm4GFpx5CZf4X5ppNJTPsaGwSlBXLX&index=10
-
 Фильтрация:
 https://www.youtube.com/watch?v=wX8RvZc5FBM&list=PLXCVm4GFpx5CZf4X5ppNJTPsaGwSlBXLX&index=12
 
 Осталось сделать:
-- регистрация
-- создание сообщения
-- получение ip и браузера пользователя (User-Agent)
-- сортировка сообщений по полям
 - сделать CAPTCHA при отправке сообщений (ну и для регистрации и авторизации наверное тоже, - в последнюю очередь)

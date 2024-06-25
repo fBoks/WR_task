@@ -22,7 +22,7 @@ class UserFactory extends Factory
             'password' => Hash::make('password'), // для проверки - хардкод 'password'. А по уму - $this->faker->password
             'email' => $this->faker->unique->safeEmail,
             'ip_address' => $this->faker->ipv4,
-            'browser' => $this->faker->userAgent,
+            'user_agent' => $this->faker->userAgent,
             'created_at' => $this->faker->dateTimeBetween('-2 month', '-1 month'),
         ];
     }

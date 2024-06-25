@@ -4,7 +4,10 @@
 
       <ul class="navbar-nav ms-auto mb-2 mb-md-0 text-center">
           @auth
-              <a href="{{ route('logout') }}">Выйти</a>
+              <div class="d-flex gap-3 align-items-center">
+                  <p class="m-0">{{ Auth::user()->username }}</p>
+                  <a href="{{ route('logout') }}">Выйти</a>
+              </div>
           @endauth
 
           @guest

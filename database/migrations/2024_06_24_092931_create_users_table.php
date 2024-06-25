@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->ipAddress()->nullable();
-            $table->string('browser')->nullable();
+            $table->string('user_agent')->nullable();
         });
     }
 

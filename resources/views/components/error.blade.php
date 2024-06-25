@@ -1,7 +1,10 @@
 @props(['name' => ''])
 
 @error($name)
-    <div class="small text-danger pt-1">
+    <div {{ $attributes->class([
+        'small', 'text-danger', 'pt-1',
+        ]) }}
+    >
         {{ $message }}
     </div>
 @enderror
